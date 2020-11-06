@@ -2,22 +2,22 @@
 
 
 
-Readme for using roiedt3d_25_12.
+## Readme for using roiedt3d_25_12.
 
 
 Written by Yu Toyoshima (ytoyo@bs.s.u-tokyo.ac.jp), 2020/Jan/28.
 
 
-1. The purpose of the programs
+## 1. The purpose of the programs
 
 RoiEdit3d has following functionalities:
-+ automatic detection of cell nuclei in  2D/3D/4D image(s) 
-+ automatic annotation for the cell nuclei (when the atlas was provided)
-+ automatic tracking the cell nuclei
-+ visulaizes the results and provides an efficient way for correction
+- automatic detection of cell nuclei in  2D/3D/4D image(s) 
+- automatic annotation for the cell nuclei (when the atlas was provided)
+- automatic tracking the cell nuclei
+- visulaizes the results and provides an efficient way for correction
 
 
-2. Environmental requirement 
+## 2. Environmental requirement 
 
 The programs were developped under Windows 7 Pro SP1 64bit.
 The executables for Windows 64bit environment will be located in binary directory (bin/).
@@ -26,18 +26,18 @@ For other environments, run the code in matlab.
 The instructions for compiling the program from source will be bundled (compilation.txt).
 
 
-3. Installation 
+## 3. Installation 
 
 This section is for using bundled executables on Windows.
 
 
-3-1. Install Matlab Compiler Runtime (R2017a)
+### 3-1. Install Matlab Compiler Runtime (R2017a)
 
 Download the Matlab Compiler Runtime (R2017a) for Windows 64bit from Mathworks web site
 (http://jp.mathworks.com/products/compiler/mcr/) and install.
 
 
-3-2. Locate required library
+### 3-2. Locate required library
 
 Run RoiEdit3D as an Administrator.
 If everything goes well, you will see the instuction for restarting the program.
@@ -65,7 +65,7 @@ http://dx.doi.org/10.6084/m9.figshare.8341088
 
 
 
-4. How to use peak_detection
+## 4. How to use peak_detection
 
 Drug and Drop *.tif file(s) to the executable, the program will detect cell nulcei and 
 output thr results for each image file.
@@ -73,64 +73,57 @@ Peak_detection requires a parameter file that reflects the character of the inpu
 Peak_detection_12.exe searches peak_detction_12_param.txt in the same directory for the image.
 
 Peak_detection will make following four files as an output;
-+ (image_name).mat contains the information of positions and shapes of the detected nuclei. 
-+ (image_name)_aligned.tif is the input image that the parallel shift was cancelled.
-+ (image_name)_blurred.tif is the image for the nuclei detection and gaussian mixture optimization.
-+ (image_name)_cum2tmp.mat contains the information for parallel shift.
+- (image_name).mat contains the information of positions and shapes of the detected nuclei. 
+- (image_name)_aligned.tif is the input image that the parallel shift was cancelled.
+- (image_name)_blurred.tif is the image for the nuclei detection and gaussian mixture optimization.
+- (image_name)_cum2tmp.mat contains the information for parallel shift.
 The former 3 files are required for RoiEdit3D.
 
 
-5. How to use RoiEdit3D
+## 5. How to use RoiEdit3D
 
 Drug & Drop an (image_name).mat to roiedit3d_25_12.exe. 
 Then the program will be started with following windows;
-+ Command prompt
-+ FIJI/ImageJ main window
-+ RoiEdit3D main window (titled ‘RoiEdit3D)
-+ Aligned image (with orthogonal views for z-sliced image)
-+ Customized ROI Manager
+- Command prompt
+- FIJI/ImageJ main window
+- RoiEdit3D main window (titled ‘RoiEdit3D)
+- Aligned image (with orthogonal views for z-sliced image)
+- Customized ROI Manager
 
 
-5-1. RoiEdit3D main window
+### 5-1. RoiEdit3D main window
 
-+ Main panel
-  + Load / Save: Loading and saving the result of detection and correction of nuclei.
-  + Visualize radius: Scaling the size of ellipsoidal ROIs.
-  + Dist. threshold (um): Distance of the threshold between centers of ROIs.
-    The unit is micro meter.
-  + Logarithm intensity: Show the image in logarithmic scale.
-  + MaxProjZ: Show max projected image for Z-slice.
+- Main panel
+  - Load / Save: Loading and saving the result of detection and correction of nuclei.
+  - Visualize radius: Scaling the size of ellipsoidal ROIs.
+  - Dist. threshold (um): Distance of the threshold between centers of ROIs. The unit is micro meter.
+  - Logarithm intensity: Show the image in logarithmic scale.
+  - MaxProjZ: Show max projected image for Z-slice.
 
-+ ROI_disp panel
-  + ROI: Toggle display ROIs.
-  + Name: Toggle display ROI names.
-  + (Upper pulldown menu): Specify unselected ROI color.
-  + (Lower pulldown menu): Specify selected ROI color
+- ROI_disp panel
+  - ROI: Toggle display ROIs.
+  - Name: Toggle display ROI names.
+  - (Upper pulldown menu): Specify unselected ROI color.
+  - (Lower pulldown menu): Specify selected ROI color
 
-+ Filtering panel
-  Filter the ROIs displayed in Customized ROI Manager window.
-  + < distance threshold: Display ROIs that have neighbor within Dist. threshold.
-  + OutOfArea: Display ROIs whose positions are out of area of original blob.
-    Valid only for the direct output of PeakDetection. 
-  + Recovered: Display ROIs that were split based on curvature.
-    Valid only for the direct output of PeakDetection. 
-  + Unchecked: Display ROIs that were not ‘checked’ in the leftmost column of Customized ROI Manager.
+- Filtering panel:  Filter the ROIs displayed in Customized ROI Manager window.
+  - < distance threshold: Display ROIs that have neighbor within Dist. threshold.
+  - OutOfArea: Display ROIs whose positions are out of area of original blob. Valid only for the direct output of PeakDetection. 
+  - Recovered: Display ROIs that were split based on curvature. Valid only for the direct output of PeakDetection. 
+  - Unchecked: Display ROIs that were not ‘checked’ in the leftmost column of Customized ROI Manager.
 
-+ Optimize panel
-  + Current: Optimize parameters of ROIs in the image of displayed time frame. 
-             Please use this function after manual correction (add/remove) of ROIs.
-  + ‘>’  : Copy ROIs in the image of current time frame to that of the next time frame 
-             and optimize parameters. (i.e. Tracking ROIs by one frame after).
-  + ‘>>’ : Repeat ‘>’ automatically for all time frames (i.e. Tracking ROIs in ascending manner).
-  + ‘<’  : Copy ROIs in the image of current time frame to that of the previous time frame 
-             and optimize parameters. (i.e. Tracking ROIs by one frame before).
-  + ‘<<’ : Repeat ‘<’ automatically for all time frames (i.e. Tracking ROIs in descending manner).
+- Optimize panel
+  - Current: Optimize parameters of ROIs in the image of displayed time frame. Please use this function after manual correction (add/remove) of ROIs.
+  - ‘>’  : Copy ROIs in the image of current time frame to that of the next time frame and optimize parameters. (i.e. Tracking ROIs by one frame after).
+  - ‘>>’ : Repeat ‘>’ automatically for all time frames (i.e. Tracking ROIs in ascending manner).
+  - ‘<’  : Copy ROIs in the image of current time frame to that of the previous time frame and optimize parameters. (i.e. Tracking ROIs by one frame before).
+  - ‘<<’ : Repeat ‘<’ automatically for all time frames (i.e. Tracking ROIs in descending manner).
 
-+ Rotation panel
+- Rotation panel
   Rotate the images and ROIs by angle of 180 degree with the X, Y, or Z axis as a center.
 
 
-5-2. Customize ROI Manager window
+### 5-2. Customize ROI Manager window
 
 Each line corresponds to each ROI in the image of one time frame.
 ROI(s) can be selected by left click (modification by shift or ctrl is valid).
@@ -139,7 +132,7 @@ Modify the names and parameters of ROIs by editing the content in the cell of th
 ROIs can be sorted and/or filtered by clicking the column headers.
 
 
-5-3. Aligned image window
+### 5-3. Aligned image window
 
 The aligned image of the input is shown.
 For Z-sliced image, XZ section and YZ section of the image will be shown as trihedral figures 
@@ -149,39 +142,29 @@ The Orthogonal Views plugin used in RoiEdit3D
 is the modified version of standard Orthogonal Views plugin in Fiji/ImageJ 
 (Fiji/ImageJ main window -> Image -> Stack -> Orthogonal Views).
 
-+ Left click: Update the XZ and YZ section (only for Orthogonal Views)
-+ Left click with Shift: Search and select a ROI near the specified position.
-+ Left click with Ctrl: Put a new ROI at the specified position.
-+ Left click with Ctrl & Shift: Search and remove a ROI near the specified position.
-+ Space key: Toggle display ROIs.
-+ Space key with Shift: Toggle display ROI names
-+ Space key with Ctrl: Optimize ROIs in the image of current time frame.
+- Left click: Update the XZ and YZ section (only for Orthogonal Views)
+- Left click with Shift: Search and select a ROI near the specified position.
+- Left click with Ctrl: Put a new ROI at the specified position.
+- Left click with Ctrl & Shift: Search and remove a ROI near the specified position.
+- Space key: Toggle display ROIs.
+- Space key with Shift: Toggle display ROI names
+- Space key with Ctrl: Optimize ROIs in the image of current time frame.
 
 
-6. Note
+## 6. Note
 
-+ RoiEdit3D may freeze when the operations are too fast. Please stop operating 
-  when the buttons and checkboxes in RoiEdit3D main panel are displayed in grayout state. 
+- RoiEdit3D may freeze when the operations are too fast. Please stop operating when the buttons and checkboxes in RoiEdit3D main panel are displayed in grayout state. 
 
-+ RoiEdit3D save the results automatically when the operations are specified.
-  When the program stopped abnormally, the results might be recovered by 
-  loading (working_mat_file_name)_tmp.mat.
+- RoiEdit3D save the results automatically when the operations are specified. When the program stopped abnormally, the results might be recovered by loading (working_mat_file_name)_tmp.mat.
 
-+ For Z-sliced image, all the ROIs in the frame may be displayed in all the slices.
-  If so, please check "Associate Show All ROIs with slices" through "More >> options…" 
-  in the ROI Manager of the Fiji/ImageJ 
-  (Fiji/ImageJ main window -> Analyze -> Tools -> ROI Manager…).
+- For Z-sliced image, all the ROIs in the frame may be displayed in all the slices. If so, please check "Associate Show All ROIs with slices" through "More >> options…" in the ROI Manager of the Fiji/ImageJ (Fiji/ImageJ main window -> Analyze -> Tools -> ROI Manager…).
 
 
 
 
-7. Copyright notice
+## 7. Copyright notice
 
-This software utilizes many functionalities made by other people such as
-Matlab, Fiji/ImageJ, guava, MorphoLibJ, dftregistration, MinMaxFilter.
-The copyright and related rights of the functionalities have been owned by 
-the copyright holder. The rights of the other part of the software have 
-been owned by Yu Toyoshima. 
+This software utilizes many functionalities made by other people such as Matlab, Fiji/ImageJ, guava, MorphoLibJ, dftregistration, MinMaxFilter. The copyright and related rights of the functionalities have been owned by the copyright holder. The rights of the other part of the software have been owned by Yu Toyoshima. 
 
 
 This project is licensed under the terms of the MIT license.
