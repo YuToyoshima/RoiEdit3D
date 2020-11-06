@@ -1,0 +1,104 @@
+Readme for installing roiedit3d_25_16 from source.
+
+
+Written by Yu Toyoshima (ytoyo@bs.s.u-tokyo.ac.jp), 2020/Jan/28.
+
+
+///////////////////////////////////////////////////////////////////
+Please note that the following descriptions are mainly for older version.
+Descriptions for current version is under construction.
+///////////////////////////////////////////////////////////////////
+
+
+
+0. Requirement
+
++ Operating System
+  The code was tested under Windows 7 x64.
+  The code may work under other operating system.
+
++ Matlab
+  In order to run the code on Matlab, three toolbox will be required; 
+  Image Processing Toolbox, Statistics and Machine Learning Toolbox, and Optimization Toolbox. 
+  Version R2017a and later will work. 
+  If you want to build package from these code, Matlab Compiler will be required.
+
++ Intel C++ compiler
+  We tested version 14.0 for windows.
+  Other version may work.
+
+
+1. Install Matlab
+
+Follow the instructions from MathWorks.
+
+
+2. Install Fiji
+
+Download Fiji (Life-Line version, 2013 July 15) for appropriate operating system from web 
+(http://imagej.net/Fiji/Downloads) and decompress it.
+Add (FIJI_INSTALL_DIR)/scripts to the matlab search path.
+Copy lib/MorphoLibJ-1.0.7.jar and src/java_sources/roiedit3d_subclass.jar to
+(FIJI_INSTALL_DIR)/plugins.
+MorphoLibJ is also available from github (https://github.com/ijpb/MorphoLibJ/releases).
+
+
+3. Install minmaxfilt
+
+Decompress lib/MinMaxFilterFolder.zip and run minmaxfilter_install.m in Matlab,
+then the inner functions will be compiled as mex functions.
+Copy mex version of lemire_nd_maxengine and lemire_nd_minengine to the source directory (src/).
+MinMaxFilter is also available from matlab file exchange
+(http://www.mathworks.com/matlabcentral/fileexchange/24705-min-max-filter).
+
+
+4. Compile and link for elipsoid_em_*.cpp
+
+Because the code includes instructions for intel C++ compiler, matlab cannot compile it.
+If you do not have the compiler, src/elipsoid_em_12.mexw64 may work for Windows environment.
+If you have the compiler, the following command will work for Linux.
+Compile command:
+
+icc -c elipsoid_em_12.cpp -DMKL_ILP64 -fPIC -debug expr-source-pos -ftz -xHost -I$MATLAB_ROOT/extern/include -I$MKLROOT/include -O3 -fp-model fast=2 -DNDEBUG -opt-matmul -axAVX -static -openmp-stubs
+
+Link command:
+
+icc -o elipsoid_em_12.mexa64 elipsoid_em_12.o -shared -L$MATLAB_ROOT/bin/glnxa64 -L$MKLROOT/lib/intel64 -lmx -lmex -lmat -lut -lstdc++ -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_ilp64.a ${MKLROOT}/lib/intel64/libmkl_core.a ${MKLROOT}/lib/intel64/libmkl_intel_thread.a -Wl,--end-group -lpthread -lm
+
+where MATLAB_ROOT is an environment variable (the path for the matlab install directory).
+Then copy elipsoid_em_12.mexa64 to the source directry (src/).
+
+
+5. Locate guava 
+
+Although RoiEdit3D uses guava (java library from google), matlab loads the old version 
+of the library (google-collect.jar) from static path.
+In order to put the guava library on the top of the static path, copy src/javaclasspath.txt
+to MATLAB_PREF_DIR.
+MATLAB_PREF_DIR can be found by running prefdir function in Matlab command window.
+Then copy src/guava-18.0.jar to $matlabroot/3rd_party/ and restart matlab.
+
+
+6. Run the code
+
+Here we can run src/roiedit3d_25_16.m from Matlab.
+Please note that the code modifies some settings for java in Matlab 
+including java.opts (for memory) and javaclasspath (for guava library).
+
+
+7. Build exectable (optional)
+
+By using matlab compiler, the matlab codes and relevant libraries are encrypted and 
+packed as a standalone exectable package.
+The package will work without matlab license and requires matlab compiler runtime 
+(available with no cost).
+
+To build the package for roiedit3d_25_16, run followings in Matlab command window;
+
+mcc('-m','roiedit3d_25_16.m','-a',fileparts(fileparts(which('Miji'))),...
+'-a','atlas_20181230_White=1_MaskPha=1_RemoveHYP=1.mat','-a','reference.mat','-a','guava-18.0.jar',...
+'-a','java.opts','-a','javaclasspath.txt','-a','peak_detection_14_param_for_*.txt',...
+'-a','merge_emtrace_white.mat','-a','visualize_promoter_expression.mat',...
+'-a','geneIDs.csv');
+
+
