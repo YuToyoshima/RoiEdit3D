@@ -20,7 +20,7 @@ RoiEdit3d has following functionalities:
 ## 2. Environmental requirement 
 
 The programs were developped under Windows 7 Pro SP1 64bit.
-The executables for Windows 64bit environment will be located in binary directory (bin/).
+The executables for Windows 64bit environment will be found in FigShare (http://dx.doi.org/10.6084/m9.figshare.8341088).
 
 For other environments, run the code in matlab.
 The instructions for compiling the program from source will be bundled (compilation.txt).
@@ -49,15 +49,15 @@ Please see the section 5 (Locate guava) of the instructions for building the pro
 
 
 
-///////////////////////////////////////////////////////////////////
-
-Please note that the following descriptions are for older version.
-Descriptions for current version is under construction.
-
-Please see the tutorial materials in figshare:
-http://dx.doi.org/10.6084/m9.figshare.8341088
-
-///////////////////////////////////////////////////////////////////
+### ///////////////////////////////////////////////////////////////////
+###
+### Please note that the following descriptions are for older version.
+### Descriptions for current version is under construction.
+### 
+### Please see the tutorial materials in figshare:
+### http://dx.doi.org/10.6084/m9.figshare.8341088
+### 
+### ///////////////////////////////////////////////////////////////////
 
 
 
