@@ -1,0 +1,3 @@
+LIBRARY elipsoid_em.mexw64
+EXPORTS
+    mexFunction
