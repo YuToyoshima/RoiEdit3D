@@ -1,0 +1,35 @@
+%%% Parameter file for peak_detection_14 series
+%%% The following parameters are optimized for Ishihara Lab 4D image for annotation.
+%%% (x,y,z,c,t)=(512,128,50,any,any).
+%%%
+%%% parameters
+flag_align_centroid = false; % whether to use centroid method (faster) than cross-corelation method (precise) in subpixel alignment (only for t-frame)
+flag_align_subtract = true; % whether to subtract median value from image in subpixel alignment (sensitive to weak signals)
+align_filter_radius = 2; % specify filter radius for alignment; if set to 0, the filtering step will be ignored.
+align_max_move = [10,10]; % [x,y] pixels of maximum difference between adjuscent z-slices; Detected movement larger than this value will be ignored.
+channel_use = 3; % specify channel for detect objects (for multichannel image)
+frame_use = 1; % specify time frame for detect objects
+prefilter_method = 'Median...';
+prefilter_option = 'radius=1 stack';
+radius_background = 50; % radius of rolling-ball for background subtraction
+blur_method = 'Gaussian Blur...';
+blur_option = 'sigma=1 stack';
+threshold_method = 'Triangle'; % for CCD/CMOS images, try Huang, Li, Triangle, etc.
+radius_dilation = [5,5,5]; % [x,y,z] (pixels) of dilation radius
+min_voxel_remove = 100; % to remove too-small objects
+curvature_distance = [4,4,4]; % a negative curvature voxel is ignored when the distance from segmentation border is smaller than this [x,y,z] value
+curvature_numvoxels = 100; % a segmented area is marked as under-segmented when the number of negative curvature voxels is larger than this value 
+sigma_default = [9,9,4.5]; % default value of [x,y,z] (pixels) of sigma of elipsoid (multivariate gaussian distribution)
+thrdist = 4; % specify option parameters for elipsoid fitting
+reltol = 5e-8; % specify option parameters for elipsoid fitting
+scaling = [0.28,0.28,0.77]; % [x,y,z] um/pixel.
+removefp_numloop = 1; % maximum number of loops for remove false positives.
+removefp_min_dist = 1.5; % [um] if minimum distance is smaller than this threshold, either roi will be removed 
+removefp_min_scdist = 1; % if minimum relative distance is smaller than this threshold, either roi will be removed
+flag_virtual_stack = true; % if true, memory requirement will be reduced by loading image data through Virtual Stack of ImageJ.
+flag_reslice_z = true; % if true, z-slices are interporated (from peak detection to repairing under-segmentation) so that the scaling of z and x is same.
+
+% debug mode
+% flag_debug = true;
+flag_debug = false;
+
