@@ -16,6 +16,13 @@ RoiEdit3d has following functionalities:
 - automatic tracking the cell nuclei
 - visulaizes the results and provides an efficient way for correction
 
+Thses programs are published with following papers. If you use these programs for your publication, please cite the follwoing papers.
+- Y. Toyoshima, et al., "Accurate Automatic Detection of Densely Distributed Cell Nuclei in 3D Space", PLOS Comp. Biol., 2016.
+  - Journal link: http://dx.plos.org/10.1371/journal.pcbi.1004970
+  - Supplememtary data: https://dx.doi.org/10.6084/m9.figshare.3184546
+- Y. Toyoshima, et al., "Neuron ID dataset facilitates neuronal annotation for whole-brain activity imaging of C. elegans", BMC Biol., 2020
+  - Journal link: https://doi.org/10.1186/s12915-020-0745-2
+  - Supplementary data: https://doi.org/10.6084/m9.figshare.8341088
 
 ## 2. Environmental requirement 
 
