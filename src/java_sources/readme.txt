@@ -31,7 +31,7 @@ Any text editor can be used for editing the contents.
 The file extension should be *.mif. 
 Specify a property of image(s) in each line as matlab/java style:
 (property1) = value; % for number values
-(property2) = ÅgvalueÅh; % for string values
+(property2) = "value"; % for string values
 (property2) = true; % for binary values
 There are two types of properties: properties for image and properties for each channel.
 Properties for image are:
